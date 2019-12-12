@@ -1,0 +1,25 @@
+.Search {
+    
+    width: inherit;
+    padding: 1em;
+    color: white;
+    font-size: calc(10px + 2vmin);
+}
+
+.SearchInput {
+    border:none;
+    padding: 1em;
+    text-align: center;
+    border-bottom: 1px solid grey;
+    font-weight: bold;
+    background-color: transparent;
+}
+
+input[type=submit] {
+    background: lightcoral;
+    color: white;
+    border: none;
+    border-radius: 20pt;
+    padding: 1em;
+    text-align: center;
+}
