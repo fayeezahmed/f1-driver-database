@@ -7,27 +7,39 @@ function SearchOutput( props ) {
 
     return (
         <div
-            className="SearchOutput"
+            className="SearchOutput FlexContainer"
             data-testid="SEARCH_OUTPUT"
         >
             <div 
-                className="ProfileImage"
+                className="Profile"
+                data-testid="PROFILE"
             >
-                {/* Profile image goes here */}
+                <h3>
+                 {givenName} {familyName}
+                </h3>
+                Profile image 
+                <div 
+                className="Bio"
+                data-testid="BIO"
+                >   
+                    <ul>
+                        <li>
+                            Date of Birth: {dateOfBirth}
+                        </li>
+                        <li>
+                            Nationality: {nationality}
+                        </li>
+                    </ul>
+                </div>   
             </div>
-            <div>
-                <ul>
-                    <li>
-                        Name: {givenName} {familyName}
-                    </li>
-                    <li>
-                        Date of Birth: {dateOfBirth}
-                    </li>
-                    <li>
-                        Nationality: {nationality}
-                    </li>
-                </ul>
-                {/* Stats of image goes here */}
+            <div 
+                className="Stats"
+                data-testid="STATS"
+            >
+                 <h3>
+                    Stats below 
+                </h3>
+                <table></table>
             </div>
         </div>
     )

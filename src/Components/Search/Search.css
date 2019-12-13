@@ -1,14 +1,13 @@
 .Search {
-    
     width: inherit;
-    padding: 1em;
+    padding: 1rem;
     color: white;
     font-size: calc(10px + 2vmin);
 }
 
 .SearchInput {
     border:none;
-    padding: 1em;
+    padding: 1rem;
     text-align: center;
     border-bottom: 1px solid grey;
     font-weight: bold;
@@ -20,6 +19,6 @@ input[type=submit] {
     color: white;
     border: none;
     border-radius: 20pt;
-    padding: 1em;
+    padding: 1rem;
     text-align: center;
 }
