@@ -6,7 +6,6 @@
  .SearchOutput, .Profile, .Stats {
     margin: 0;
     padding: 1.25rem;
-    color: white;
 }
 
 .SearchOutput {
@@ -14,11 +13,9 @@
 }
 
 .Profile {
-    background: red;
     flex: 1;
 }
 
 .Stats {
-    background: blue;
     flex: 1;
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './SearchOutput.css';
 
 function SearchOutput( props ) {
-    const { dateOfBirth, familyName, givenName, nationality } = props;
+    const { dateOfBirth, familyName, givenName, nationality, imageUrl } = props;
     // const [dateOfBirth, setDateOfBirth] = useState(dob);
 
     return (
@@ -17,7 +17,7 @@ function SearchOutput( props ) {
                 <h3>
                  {givenName} {familyName}
                 </h3>
-                Profile image 
+                <img src={imageUrl} alt="driver image" width="200" />
                 <div 
                 className="Bio"
                 data-testid="BIO"
