@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Search.css';
 import SearchOutput from '../SearchOutput/SearchOutput';
-import findKey from '../../utils/findKey';
-//https://rangle.io/blog/simplifying-controlled-inputs-with-hooks/
+import { getDriversBio, getDriversImageUrl } from '../../utils/apiCalls';
+
 
 function Search(){
     const [searchTerm, setSearchTerm] = useState("");
@@ -14,73 +14,9 @@ function Search(){
     const [imageUrl, setImageUrl] = useState("")
 
     const handleSubmit = async (e) => {
-        // call api
-        // To grab an image 
-        // http://techslides.com/grab-wikipedia-pictures-by-api-with-php
-
-        // Driver information
-        //// http://ergast.com/api/f1/drivers/michael_schumacher.json
-
-        // Stats for titles won:
-        //// http://ergast.com/api/f1/drivers/Michael_Schumacher/driverStandings.json
-
         e.preventDefault();
 
-        // Get driver name:
-        const getDriverName = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=prefixsearch&pssearch=${searchTerm}&prop=images&imlimit=25&format=json&origin=*`,
-            { mode : 'cors' }).catch((error) => {
-                console.log("error", error)
-            })
-            
-        const driverName = await getDriverName.json().then((res) => {
-                return res.query.prefixsearch[0].title;
-            })
-        
-
-        // Profile image
-        const driverImages = await fetch(
-            `https://en.wikipedia.org/w/api.php?action=query&titles=${driverName}&prop=images&imlimit=25&format=json&origin=*`,
-            { mode : 'cors' }).catch((error) => {
-                console.log("error", error)
-            });
-
-
-        const imageName = await driverImages.json().then((res) => {
-            const image = findKey(res, "images")
-            if(image && image[0] && image[0][0]) {
-                return image[0][0].title
-            }
-            else {
-                return ""
-            }
-        })
-
-        const driverImage = await fetch(
-            `http://en.wikipedia.org/w/api.php?action=query&titles=${imageName}&prop=imageinfo&iiprop=url&format=json&origin=*`,
-            { mode: 'cors'}
-        )
-        
-        const imageUrl = await driverImage.json().then((res) => {
-            const url = findKey(res, "url")
-            return url[0]
-        })
-
-        setImageUrl(imageUrl);
-
-        // Ergast API
-        let parsedSearchTerm;
-
-        if (searchTerm === 'Michael Schumacher' || searchTerm === 'Max Verstappen') {
-            console.log('true!')
-            parsedSearchTerm = searchTerm.split(' ').join('_')
-            
-        }
-        else {
-            parsedSearchTerm = searchTerm.split(' ')[1]
-        }
-    
-        console.log(parsedSearchTerm)
-        const result = await fetch('http://ergast.com/api/f1/drivers/' + parsedSearchTerm + '.json')
+        const result = await getDriversBio(searchTerm);
         await result.json()
             .then((res)=>{
                 if (res.MRData && res.MRData.total == 1) {
@@ -91,14 +27,17 @@ function Search(){
                     setNationality(res.MRData.DriverTable.Drivers[0].nationality)
                 }
             })
+        
+        const imageUrl = await getDriversImageUrl(searchTerm);
+
+        setImageUrl(imageUrl);
     }
 
-    useEffect(() => {
-        if (data) {
-            console.log(data.MRData.DriverTable.Drivers[0])
-            
-        }
-    }, [data])
+    // useEffect(() => {
+    //     if (data) {
+    //         console.log(data.MRData.DriverTable.Drivers[0])
+    //     }
+    // }, [data])
 
     return ( 
         <div 

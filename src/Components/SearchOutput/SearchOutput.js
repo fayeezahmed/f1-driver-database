@@ -24,10 +24,10 @@ function SearchOutput( props ) {
                 >   
                     <ul>
                         <li>
-                            Date of Birth: {dateOfBirth}
+                            Date of Birth: <span data-testid="DOB"> {dateOfBirth} </span>
                         </li>
                         <li>
-                            Nationality: {nationality}
+                            Nationality: <span data-testid="NATIONALITY">{nationality}</span>
                         </li>
                     </ul>
                 </div>   
