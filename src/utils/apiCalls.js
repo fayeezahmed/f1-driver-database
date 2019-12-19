@@ -1,4 +1,5 @@
 import findKey from './findKey';
+const fetch = require("node-fetch");
 
 async function getDriversImageUrl(searchTerm) {
     // Get driver's image from wikipedia
@@ -6,7 +7,7 @@ async function getDriversImageUrl(searchTerm) {
     // Get driver name:
     const getDriverName = await fetch(`https://en.wikipedia.org/w/api.php?action=query&list=prefixsearch&pssearch=${searchTerm}&prop=images&imlimit=5&format=json&origin=*`,
         { mode : 'cors' }).catch((error) => {
-            console.log("error", error)
+            console.log("Cannot get driver's name! ", error)
         })
         
     const driverName = await getDriverName.json().then((res) => {
@@ -17,7 +18,7 @@ async function getDriversImageUrl(searchTerm) {
     const driverImages = await fetch(
         `https://en.wikipedia.org/w/api.php?action=query&titles=${driverName}&prop=images&imlimit=5&format=json&origin=*`,
         { mode : 'cors' }).catch((error) => {
-            console.log("error", error)
+            console.log("Error: cannot fetch driver's images! ", error)
         });
 
     const imageName = await driverImages.json().then((res) => {
@@ -33,7 +34,9 @@ async function getDriversImageUrl(searchTerm) {
     const driverImage = await fetch(
         `http://en.wikipedia.org/w/api.php?action=query&titles=${imageName}&prop=imageinfo&iiprop=url&format=json&origin=*`,
         { mode: 'cors'}
-    )
+    ).catch((error) => {
+        console.log("Cannot find driver image! ", error)
+    })
     
     const imageUrl = await driverImage.json().then((res) => {
         const url = findKey(res, "url")

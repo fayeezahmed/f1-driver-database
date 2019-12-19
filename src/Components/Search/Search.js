@@ -33,12 +33,6 @@ function Search(){
         setImageUrl(imageUrl);
     }
 
-    // useEffect(() => {
-    //     if (data) {
-    //         console.log(data.MRData.DriverTable.Drivers[0])
-    //     }
-    // }, [data])
-
     return ( 
         <div 
             className="Search"
@@ -55,7 +49,7 @@ function Search(){
                     
                 <input 
                     type="submit"
-                    value="Submit" 
+                    value="Search" 
                     data-testid="SUBMIT_BUTTON"
                 />
             </form>

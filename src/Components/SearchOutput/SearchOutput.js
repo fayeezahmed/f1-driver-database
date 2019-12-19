@@ -3,7 +3,6 @@ import './SearchOutput.css';
 
 function SearchOutput( props ) {
     const { dateOfBirth, familyName, givenName, nationality, imageUrl } = props;
-    // const [dateOfBirth, setDateOfBirth] = useState(dob);
 
     return (
         <div
@@ -17,7 +16,9 @@ function SearchOutput( props ) {
                 <h3>
                  {givenName} {familyName}
                 </h3>
-                <img src={imageUrl} alt="driver image" width="200" />
+                <div >
+                    <img className="ProfileImage" src={imageUrl} alt="driver image" />
+                </div>
                 <div 
                 className="Bio"
                 data-testid="BIO"

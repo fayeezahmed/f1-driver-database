@@ -1,7 +1,11 @@
 @media screen and (min-width: 640px){
     .FlexContainer {
         display: flex;
-    }    
+    }
+
+    .ProfileImage {
+        width: 400px;
+    }
 }
  .SearchOutput, .Profile, .Stats {
     margin: 0;
@@ -9,11 +13,15 @@
 }
 
 .SearchOutput {
-    color: darkslategray;
+    color: black;
 }
 
 .Profile {
     flex: 1;
+}
+
+.ProfileImage {
+    width: 200px;
 }
 
 .Stats {

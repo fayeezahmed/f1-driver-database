@@ -15,10 +15,13 @@
 }
 
 input[type=submit] {
-    background: lightcoral;
+    background: black;
     color: white;
     border: none;
-    border-radius: 20pt;
-    padding: 1rem;
+    border-radius: 5pt;
+    padding: 0.6rem;
+    padding-left: 1.3rem;
+    padding-right: 1.3rem;
     text-align: center;
+    font-weight: bold;
 }
