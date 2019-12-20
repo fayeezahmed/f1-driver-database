@@ -2,7 +2,16 @@ import React, { useState } from 'react';
 import './SearchOutput.css';
 
 function SearchOutput( props ) {
-    const { dateOfBirth, familyName, givenName, nationality, imageUrl } = props;
+    const { 
+        dateOfBirth,
+        familyName, 
+        givenName, 
+        nationality, 
+        imageUrl,
+        racesWon,
+        lastWin,
+        firstWin
+    } = props;
 
     return (
         <div
@@ -40,7 +49,17 @@ function SearchOutput( props ) {
                  <h3>
                     Stats below 
                 </h3>
-                <table></table>
+                <ul>
+                    <li>
+                        Race wins: {racesWon}
+                    </li>
+                    <li>
+                        First win: {firstWin.year} {firstWin.race}
+                    </li>
+                    <li>
+                        Last win: {lastWin.year} {lastWin.race}
+                    </li>
+                </ul>
             </div>
         </div>
     )

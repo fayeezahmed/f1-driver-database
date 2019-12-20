@@ -54,7 +54,8 @@ async function getDriversBio(searchTerm) {
         
     }
     else {
-        parsedSearchTerm = searchTerm.split(' ')[1]
+        const splitSearchTerm = searchTerm.split(' ')
+        parsedSearchTerm = splitSearchTerm[splitSearchTerm.length -1]
     }
 
     const result = await fetch('http://ergast.com/api/f1/drivers/' + parsedSearchTerm + '.json')
@@ -62,7 +63,64 @@ async function getDriversBio(searchTerm) {
     return result;
 }
 
+async function getDriversStats(searchTerm) {
+    // Get driver's race results - this needs to be parsed for number of wins and podiums:
+    //// https://ergast.com/api/f1/drivers/alonso/results.json
+  
+    const parsedSearchTerm = prepareNameForAPI(searchTerm)
+    const allRaceResults = await fetch(`https://ergast.com/api/f1/drivers/${parsedSearchTerm}/results.json?limit=1000`) 
+    const races = allRaceResults.json()
+        .then((res) => {
+            if(res && res.MRData && res.MRData.RaceTable && res.MRData.RaceTable.Races) {
+                const racesWon = res.MRData.RaceTable.Races.filter((f) =>{
+                    //     console.log(parseInt(f.Results[0].position), parseInt(f.Results[0].position) === 1)
+                        if (parseInt(f.Results[0].position) === 1) {
+                            return parseInt(f.Results[0].position)
+                        }
+                })
+                if (races) {
+                    return {
+                        lastWin: {
+                            year: racesWon[racesWon.length-1].season,
+                            race: racesWon[racesWon.length-1].raceName
+                        },
+                        firstWin: {
+                            year: racesWon[0].season,
+                            race: racesWon[0].raceName,
+                        },
+                        numberOfWins: racesWon.length
+                    }
+                } else {
+                    return null
+                }
+            }
+        })
+
+    return races
+    // Get driver's pole position count - parse pos 1:
+    //// https://ergast.com/api/f1/drivers/alonso/qualifying.json
+
+    // Get driver's championship results - this needs to be parsed for number of titles:
+    //// https://ergast.com/api/f1/drivers/alonso/driverStandings/1/seasons.json
+}
+
+function prepareNameForAPI(searchTerm) {
+    let parsedSearchTerm;
+
+    if (searchTerm === 'Michael Schumacher' || searchTerm === 'Max Verstappen') {
+        parsedSearchTerm = searchTerm.split(' ').join('_')
+        
+    }
+    else {
+        const splitSearchTerm = searchTerm.split(' ')
+        parsedSearchTerm = splitSearchTerm[splitSearchTerm.length -1]
+    }
+
+    return parsedSearchTerm
+}
+
 export {
     getDriversImageUrl,
-    getDriversBio
+    getDriversBio,
+    getDriversStats,
 }

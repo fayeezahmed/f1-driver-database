@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './Search.css';
 import SearchOutput from '../SearchOutput/SearchOutput';
-import { getDriversBio, getDriversImageUrl } from '../../utils/apiCalls';
+import { 
+   getDriversBio,
+   getDriversImageUrl,
+   getDriversStats, 
+} from '../../utils/apiCalls';
 
 
 function Search(){
@@ -12,10 +16,18 @@ function Search(){
     const [givenName, setGivenName] = useState("");
     const [nationality, setNationality] = useState("");
     const [imageUrl, setImageUrl] = useState("")
+    const [racesWon, setRacesWon] = useState("")
+    const [lastWin, setLastWin] = useState("")
+    const [firstWin, setFirstWin] = useState("")
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        const raceResults = await getDriversStats(searchTerm);
+        if (raceResults) {
+            setRacesWon(raceResults.numberOfWins)
+            setLastWin(raceResults.lastWin)
+            setFirstWin(raceResults.firstWin)
+        }
         const result = await getDriversBio(searchTerm);
         await result.json()
             .then((res)=>{
@@ -29,7 +41,7 @@ function Search(){
             })
         
         const imageUrl = await getDriversImageUrl(searchTerm);
-
+        
         setImageUrl(imageUrl);
     }
 
@@ -59,6 +71,9 @@ function Search(){
                         givenName={givenName}
                         nationality={nationality}
                         imageUrl={imageUrl}
+                        racesWon={racesWon}
+                        lastWin={lastWin}
+                        firstWin={firstWin}
                     /> : null }
         </div>
     )
