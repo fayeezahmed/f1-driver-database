@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './Search.css';
 import SearchOutput from '../SearchOutput/SearchOutput';
 import { 
@@ -31,7 +31,7 @@ function Search(){
         const result = await getDriversBio(searchTerm);
         await result.json()
             .then((res)=>{
-                if (res.MRData && res.MRData.total == 1) {
+                if (res.MRData && res.MRData.total === 1) {
                     setData(res)
                     setDob(res.MRData.DriverTable.Drivers[0].dateOfBirth)
                     setFamilyName(res.MRData.DriverTable.Drivers[0].familyName)

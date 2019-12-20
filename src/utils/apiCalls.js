@@ -77,6 +77,9 @@ async function getDriversStats(searchTerm) {
                         if (parseInt(f.Results[0].position) === 1) {
                             return parseInt(f.Results[0].position)
                         }
+                        else {
+                            return null;
+                        }
                 })
                 if (races) {
                     return {

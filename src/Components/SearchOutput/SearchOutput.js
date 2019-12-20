@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React  from 'react';
 import './SearchOutput.css';
 
 function SearchOutput( props ) {
@@ -26,7 +26,7 @@ function SearchOutput( props ) {
                  {givenName} {familyName}
                 </h3>
                 <div >
-                    <img className="ProfileImage" src={imageUrl} alt="driver image" />
+                    <img className="ProfileImage" src={imageUrl} alt="driver profile" />
                 </div>
                 <div 
                 className="Bio"

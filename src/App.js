@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Search from './Components/Search/Search';
 import { ReactComponent as Logo } from './Assets/f1_logo.svg';
