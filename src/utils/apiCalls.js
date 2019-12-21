@@ -99,7 +99,17 @@ async function getRaceWins(searchTerm) {
                         numberOfWins: racesWon.length
                     }
                 } else {
-                    return null
+                    return  {
+                        lastWin: {
+                            year: null, 
+                            race: null,
+                        },
+                        firstWin: {
+                            year: null,
+                            race: null,
+                        },
+                        numberOfWins: 0 
+                    }
                 }
             }
         })
@@ -108,7 +118,6 @@ async function getRaceWins(searchTerm) {
 }
 
 async function getDriversStats(searchTerm) {
-    
     // Get driver's pole position count - parse pos 1:
     //// https://ergast.com/api/f1/drivers/alonso/qualifying.json
 
