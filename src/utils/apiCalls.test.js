@@ -13,3 +13,4 @@ test('should throw an error when the driver name cannot be found', async () => {
     const imgUrl = await getDriversImageUrl('Fnado Aonso')
     expect(imgUrl).toEqual('https://upload.wikimedia.org/wikipedia/commons/6/67/2017_British_Grand_Prix_%2835127471353%29.jpg')
 })
+

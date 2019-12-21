@@ -31,7 +31,7 @@ function Search(){
         const result = await getDriversBio(searchTerm);
         await result.json()
             .then((res)=>{
-                if (res.MRData && res.MRData.total === 1) {
+                if (res.MRData && parseInt(res.MRData.total) === 1) {
                     setData(res)
                     setDob(res.MRData.DriverTable.Drivers[0].dateOfBirth)
                     setFamilyName(res.MRData.DriverTable.Drivers[0].familyName)

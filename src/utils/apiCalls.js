@@ -81,7 +81,7 @@ async function getDriversStats(searchTerm) {
                             return null;
                         }
                 })
-                if (races) {
+                if (racesWon.length > 0) {
                     return {
                         lastWin: {
                             year: racesWon[racesWon.length-1].season,

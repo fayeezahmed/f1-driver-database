@@ -23,7 +23,7 @@ function SearchOutput( props ) {
                 data-testid="PROFILE"
             >
                 <h3>
-                 {givenName} {familyName}
+                    {givenName} {familyName}
                 </h3>
                 <div >
                     <img className="ProfileImage" src={imageUrl} alt="driver profile" />
