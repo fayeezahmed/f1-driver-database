@@ -9,11 +9,16 @@ async function getDriversImageUrl(searchTerm) {
         { mode : 'cors' }).catch((error) => {
             console.log("Cannot get driver's name! ", error)
         })
-        
     const driverName = await getDriverName.json().then((res) => {
-            return res.query.prefixsearch[0].title;
+            if(res.query.prefixsearch.length > 0) {
+                return res.query.prefixsearch[0].title;
+            } else {
+                return null;
+            }
         })
-
+    if (driverName === null) {
+        return null;
+    }
     // Profile image
     const driverImages = await fetch(
         `https://en.wikipedia.org/w/api.php?action=query&titles=${driverName}&prop=images&imlimit=5&format=json&origin=*`,
@@ -63,7 +68,7 @@ async function getDriversBio(searchTerm) {
     return result;
 }
 
-async function getDriversStats(searchTerm) {
+async function getRaceWins(searchTerm) {
     // Get driver's race results - this needs to be parsed for number of wins and podiums:
     //// https://ergast.com/api/f1/drivers/alonso/results.json
   
@@ -99,7 +104,11 @@ async function getDriversStats(searchTerm) {
             }
         })
 
-    return races
+        return races
+}
+
+async function getDriversStats(searchTerm) {
+    
     // Get driver's pole position count - parse pos 1:
     //// https://ergast.com/api/f1/drivers/alonso/qualifying.json
 
@@ -126,4 +135,5 @@ export {
     getDriversImageUrl,
     getDriversBio,
     getDriversStats,
+    getRaceWins,
 }

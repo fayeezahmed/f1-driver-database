@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import './Search.css';
 import SearchOutput from '../SearchOutput/SearchOutput';
 import { 
-   getDriversBio,
-   getDriversImageUrl,
-   getDriversStats, 
+    getDriversBio,
+    getDriversImageUrl,
+    getDriversStats, 
+    getRaceWins,
 } from '../../utils/apiCalls';
 
 
@@ -22,7 +23,7 @@ function Search(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const raceResults = await getDriversStats(searchTerm);
+        const raceResults = await getRaceWins(searchTerm);
         if (raceResults) {
             setRacesWon(raceResults.numberOfWins)
             setLastWin(raceResults.lastWin)
