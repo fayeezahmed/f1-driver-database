@@ -6,6 +6,7 @@ import {
     getDriversImageUrl,
     getDriversStats, 
     getRaceWins,
+    getPolePositions,
 } from '../../utils/apiCalls';
 
 
@@ -20,17 +21,25 @@ function Search(){
     const [racesWon, setRacesWon] = useState("")
     const [lastWin, setLastWin] = useState("")
     const [firstWin, setFirstWin] = useState("")
+    const [polePositions, setPolePositions] = useState()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         const raceResults = await getRaceWins(searchTerm);
         if (raceResults) {
             setRacesWon(raceResults.numberOfWins)
             setLastWin(raceResults.lastWin)
             setFirstWin(raceResults.firstWin)
         }
-        const result = await getDriversBio(searchTerm);
-        await result.json()
+
+        const polePositions = await getPolePositions(searchTerm);
+        if (polePositions) {
+            setPolePositions(polePositions)
+        }
+
+        const driversBio = await getDriversBio(searchTerm);
+        await driversBio.json()
             .then((res)=>{
                 if (res.MRData && parseInt(res.MRData.total) === 1) {
                     setData(res)
@@ -75,6 +84,7 @@ function Search(){
                         racesWon={racesWon}
                         lastWin={lastWin}
                         firstWin={firstWin}
+                        polePositions={polePositions}
                     /> : null }
         </div>
     )

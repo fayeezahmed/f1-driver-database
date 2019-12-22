@@ -10,7 +10,8 @@ function SearchOutput( props ) {
         imageUrl,
         racesWon,
         lastWin,
-        firstWin
+        firstWin,
+        polePositions
     } = props;
 
     return (
@@ -58,6 +59,9 @@ function SearchOutput( props ) {
                     </li>
                     <li>
                         Last win: {lastWin.year} {lastWin.race}
+                    </li>
+                    <li>
+                        Pole Positions: {console.log(polePositions)}
                     </li>
                 </ul>
             </div>

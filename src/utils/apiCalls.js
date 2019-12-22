@@ -78,7 +78,6 @@ async function getRaceWins(searchTerm) {
         .then((res) => {
             if(res && res.MRData && res.MRData.RaceTable && res.MRData.RaceTable.Races) {
                 const racesWon = res.MRData.RaceTable.Races.filter((f) =>{
-                    //     console.log(parseInt(f.Results[0].position), parseInt(f.Results[0].position) === 1)
                         if (parseInt(f.Results[0].position) === 1) {
                             return parseInt(f.Results[0].position)
                         }
@@ -117,6 +116,25 @@ async function getRaceWins(searchTerm) {
         return races
 }
 
+async function getPolePositions(searchTerm) {
+    const parsedSearchTerm = prepareNameForAPI(searchTerm)
+    const qualifyingPos = await fetch(`https://ergast.com/api/f1/drivers/${parsedSearchTerm}/qualifying.json?limit=1000`)
+    const polePositions = await qualifyingPos.json().then((res) => {
+        res.MRData.RaceTable.Races.filter(f => {
+            if (parseInt(f.QualifyingResults[0].position) === 1) {
+                console.log('fas', parseInt(f.QualifyingResults[0].position)
+)
+                return parseInt(f.QualifyingResults[0].position)
+            }
+            else {
+                return null;
+            }
+        })
+    });
+    console.log(polePositions)
+    return polePositions 
+}
+
 async function getDriversStats(searchTerm) {
     // Get driver's pole position count - parse pos 1:
     //// https://ergast.com/api/f1/drivers/alonso/qualifying.json
@@ -145,4 +163,5 @@ export {
     getDriversBio,
     getDriversStats,
     getRaceWins,
+    getPolePositions,
 }
