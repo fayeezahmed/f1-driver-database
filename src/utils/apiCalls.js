@@ -120,19 +120,11 @@ async function getPolePositions(searchTerm) {
     const parsedSearchTerm = prepareNameForAPI(searchTerm)
     const qualifyingPos = await fetch(`https://ergast.com/api/f1/drivers/${parsedSearchTerm}/qualifying.json?limit=1000`)
     const polePositions = await qualifyingPos.json().then((res) => {
-        res.MRData.RaceTable.Races.filter(f => {
-            if (parseInt(f.QualifyingResults[0].position) === 1) {
-                console.log('fas', parseInt(f.QualifyingResults[0].position)
-)
-                return parseInt(f.QualifyingResults[0].position)
-            }
-            else {
-                return null;
-            }
-        })
+        const numOfPoles = res.MRData.RaceTable.Races.filter(f => parseInt(f.QualifyingResults[0].position) === 1)
+
+        return numOfPoles;
     });
-    console.log(polePositions)
-    return polePositions 
+    return polePositions.length
 }
 
 async function getDriversStats(searchTerm) {

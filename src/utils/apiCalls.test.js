@@ -6,6 +6,7 @@ import {
     getDriversBio, 
     getDriversImageUrl,
     getRaceWins,
+    getPolePositions,
 } from './apiCalls';
 
 test('should get an image url with a valid driver', async () => {
@@ -34,4 +35,14 @@ test('should return null race wins if driver has not won any', async () => {
     expect(raceWins.firstWin.year).toEqual(null)
     expect(raceWins.firstWin.race).toEqual(null)
     expect(raceWins.numberOfWins).toEqual(0)
+})
+
+test('should return number of pole positions if driver has them', async () => {
+    const numOfPoles = await getPolePositions('Fernando Alonso')
+    expect(numOfPoles).toEqual(23)
+})
+
+test('should return 0 if driver has no pole positions', async () => {
+    const numOfPoles = await getPolePositions('Jos Verstappen')
+    expect(numOfPoles).toEqual(0)
 })

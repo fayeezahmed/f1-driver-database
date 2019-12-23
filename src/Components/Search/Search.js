@@ -33,10 +33,8 @@ function Search(){
             setFirstWin(raceResults.firstWin)
         }
 
-        const polePositions = await getPolePositions(searchTerm);
-        if (polePositions) {
-            setPolePositions(polePositions)
-        }
+        const numOfPoles = await getPolePositions(searchTerm);
+        setPolePositions(numOfPoles)
 
         const driversBio = await getDriversBio(searchTerm);
         await driversBio.json()

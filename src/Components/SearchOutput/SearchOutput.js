@@ -61,7 +61,7 @@ function SearchOutput( props ) {
                         Last win: {lastWin.year} {lastWin.race}
                     </li>
                     <li>
-                        Pole Positions: {console.log(polePositions)}
+                        Pole Positions: {polePositions}
                     </li>
                 </ul>
             </div>
