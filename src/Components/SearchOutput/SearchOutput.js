@@ -53,7 +53,13 @@ function SearchOutput( props ) {
                 </h3>
                 <ul>
                     <li>
+                        Championships: {championships}
+                    </li>
+                    <li>
                         Race wins: {racesWon}
+                    </li>
+                    <li>
+                        Pole Positions: {polePositions}
                     </li>
                     <li>
                         First win: {firstWin.year} {firstWin.race}
@@ -61,13 +67,6 @@ function SearchOutput( props ) {
                     <li>
                         Last win: {lastWin.year} {lastWin.race}
                     </li>
-                    <li>
-                        Pole Positions: {polePositions}
-                    </li>
-                    <li>
-                        Championships: {championships}
-                    </li>
-
                 </ul>
             </div>
         </div>
