@@ -11,7 +11,8 @@ function SearchOutput( props ) {
         racesWon,
         lastWin,
         firstWin,
-        polePositions
+        polePositions,
+        championships, 
     } = props;
 
     return (
@@ -63,6 +64,10 @@ function SearchOutput( props ) {
                     <li>
                         Pole Positions: {polePositions}
                     </li>
+                    <li>
+                        Championships: {championships}
+                    </li>
+
                 </ul>
             </div>
         </div>

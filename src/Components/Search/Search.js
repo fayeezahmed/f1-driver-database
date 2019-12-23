@@ -4,9 +4,9 @@ import SearchOutput from '../SearchOutput/SearchOutput';
 import { 
     getDriversBio,
     getDriversImageUrl,
-    getDriversStats, 
     getRaceWins,
     getPolePositions,
+    getChampionshipsWon,
 } from '../../utils/apiCalls';
 
 
@@ -22,6 +22,7 @@ function Search(){
     const [lastWin, setLastWin] = useState("")
     const [firstWin, setFirstWin] = useState("")
     const [polePositions, setPolePositions] = useState()
+    const [championships, setChampionchips] = useState()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -35,6 +36,9 @@ function Search(){
 
         const numOfPoles = await getPolePositions(searchTerm);
         setPolePositions(numOfPoles)
+
+        const numOfChampionships = await getChampionshipsWon(searchTerm);
+        setChampionchips(numOfChampionships);
 
         const driversBio = await getDriversBio(searchTerm);
         await driversBio.json()
@@ -83,6 +87,7 @@ function Search(){
                         lastWin={lastWin}
                         firstWin={firstWin}
                         polePositions={polePositions}
+                        championships={championships}
                     /> : null }
         </div>
     )

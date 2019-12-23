@@ -119,20 +119,18 @@ async function getRaceWins(searchTerm) {
 async function getPolePositions(searchTerm) {
     const parsedSearchTerm = prepareNameForAPI(searchTerm)
     const qualifyingPos = await fetch(`https://ergast.com/api/f1/drivers/${parsedSearchTerm}/qualifying.json?limit=1000`)
-    const polePositions = await qualifyingPos.json().then((res) => {
-        const numOfPoles = res.MRData.RaceTable.Races.filter(f => parseInt(f.QualifyingResults[0].position) === 1)
+    const polePositions = await qualifyingPos.json()
+    const numOfPoles = polePositions.MRData.RaceTable.Races.filter(f => parseInt(f.QualifyingResults[0].position) === 1)
 
-        return numOfPoles;
-    });
-    return polePositions.length
+    return numOfPoles.length
 }
 
-async function getDriversStats(searchTerm) {
-    // Get driver's pole position count - parse pos 1:
-    //// https://ergast.com/api/f1/drivers/alonso/qualifying.json
-
-    // Get driver's championship results - this needs to be parsed for number of titles:
-    //// https://ergast.com/api/f1/drivers/alonso/driverStandings/1/seasons.json
+async function getChampionshipsWon(driverName) {
+    const parsedDriverName = prepareNameForAPI(driverName)
+    const getChampionships = await fetch(`https://ergast.com/api/f1/drivers/${parsedDriverName}/driverStandings/1/seasons.json
+`)
+    const getChampionshipsJson = await getChampionships.json()
+    return parseInt(getChampionshipsJson.MRData.total)
 }
 
 function prepareNameForAPI(searchTerm) {
@@ -147,13 +145,13 @@ function prepareNameForAPI(searchTerm) {
         parsedSearchTerm = splitSearchTerm[splitSearchTerm.length -1]
     }
 
-    return parsedSearchTerm
+    return parsedSearchTerm;
 }
 
 export {
     getDriversImageUrl,
     getDriversBio,
-    getDriversStats,
     getRaceWins,
     getPolePositions,
+    getChampionshipsWon,
 }

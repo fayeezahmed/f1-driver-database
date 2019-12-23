@@ -8,7 +8,9 @@ test('renders search output component when props are provided', async () => {
     familyName: 'Alonso', 
     givenName: 'Fernando', 
     nationality: 'Spanish', 
-    imageUrl: 'someImageUrl'
+    imageUrl: 'someImageUrl',
+    firstWin: { year: 2003, race: 'Some GP' },
+    lastWin: { year: 2013, race: 'Some other GP' },
   }
   const { getByTestId, getByText } = render(<SearchOutput {...props} />);
 
