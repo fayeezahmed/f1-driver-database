@@ -34,14 +34,18 @@ function SearchOutput( props ) {
                 className="Bio"
                 data-testid="BIO"
                 >   
-                    <ul>
-                        <li>
-                            Date of Birth: <span data-testid="DOB"> {dateOfBirth} </span>
-                        </li>
-                        <li>
-                            Nationality: <span data-testid="NATIONALITY">{nationality}</span>
-                        </li>
-                    </ul>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th>Date of Birth</th>
+                                <td data-testid="DOB">{dateOfBirth}</td>
+                            </tr>
+                            <tr>
+                                <th>Nationality</th>
+                                <td data-testid="NATONALITY">{nationality}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>   
             </div>
             <div 
@@ -49,25 +53,37 @@ function SearchOutput( props ) {
                 data-testid="STATS"
             >
                  <h3>
-                    Stats below 
+                    Career stats 
                 </h3>
-                <ul>
-                    <li>
-                        Championships: {championships}
-                    </li>
-                    <li>
-                        Race wins: {racesWon}
-                    </li>
-                    <li>
-                        Pole Positions: {polePositions}
-                    </li>
-                    <li>
-                        First win: {firstWin.year} {firstWin.race}
-                    </li>
-                    <li>
-                        Last win: {lastWin.year} {lastWin.race}
-                    </li>
-                </ul>
+                <table className="Stats-Table">
+                    <tbody>
+                        <tr>
+                            <th>Championships</th>
+                            <td className="Stats-Table-Middle-row"></td>
+                            <td>{championships}</td>
+                        </tr>
+                        <tr>
+                            <th>Race wins</th>
+                            <td className="Stats-Table-Middle-row"></td>
+                            <td>{racesWon}</td>
+                        </tr>
+                        <tr>
+                            <th>Pole Positions</th>
+                            <td className="Stats-Table-Middle-row"></td>
+                            <td>{polePositions}</td>
+                        </tr>
+                        <tr>
+                            <th>First Win</th>
+                            <td className="Stats-Table-Middle-row"></td>
+                            <td>{firstWin.year} {firstWin.race}</td>
+                        </tr>
+                        <tr>
+                            <th>Last Win</th>
+                            <td className="Stats-Table-Middle-row"></td>
+                            <td>{lastWin.year} {lastWin.race}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     )

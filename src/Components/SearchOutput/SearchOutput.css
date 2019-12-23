@@ -27,3 +27,8 @@
 .Stats {
     flex: 1;
 }
+
+.Bio table {
+    position: right;
+    text-align: right;
+}

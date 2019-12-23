@@ -69,9 +69,6 @@ async function getDriversBio(searchTerm) {
 }
 
 async function getRaceWins(searchTerm) {
-    // Get driver's race results - this needs to be parsed for number of wins and podiums:
-    //// https://ergast.com/api/f1/drivers/alonso/results.json
-  
     const parsedSearchTerm = prepareNameForAPI(searchTerm)
     const allRaceResults = await fetch(`https://ergast.com/api/f1/drivers/${parsedSearchTerm}/results.json?limit=1000`) 
     const races = allRaceResults.json()
