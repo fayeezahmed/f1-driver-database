@@ -34,7 +34,7 @@ function SearchOutput( props ) {
                 className="Bio"
                 data-testid="BIO"
                 >   
-                    <table>
+                    <table align="center">
                         <tbody>
                             <tr>
                                 <th>Date of Birth</th>
@@ -56,7 +56,7 @@ function SearchOutput( props ) {
                     Career stats 
                 </h3>
                 <table className="Stats-Table">
-                    <tbody>
+                    <tbody align="left">
                         <tr>
                             <th>Championships</th>
                             <td className="Stats-Table-Middle-row"></td>
