@@ -37,7 +37,7 @@ async function getDriversImageUrl(searchTerm) {
     })
 
     const driverImage = await fetch(
-        `http://en.wikipedia.org/w/api.php?action=query&titles=${imageName}&prop=imageinfo&iiprop=url&format=json&origin=*`,
+        `https://en.wikipedia.org/w/api.php?action=query&titles=${imageName}&prop=imageinfo&iiprop=url&format=json&origin=*`,
         { mode: 'cors'}
     ).catch((error) => {
         console.log("Cannot find driver image! ", error)
