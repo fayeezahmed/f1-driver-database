@@ -63,7 +63,7 @@ async function getDriversBio(searchTerm) {
         parsedSearchTerm = splitSearchTerm[splitSearchTerm.length -1]
     }
 
-    const result = await fetch('http://ergast.com/api/f1/drivers/' + parsedSearchTerm + '.json')
+    const result = await fetch('https://ergast.com/api/f1/drivers/' + parsedSearchTerm + '.json')
     
     return result;
 }
