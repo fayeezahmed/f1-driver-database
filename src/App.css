@@ -10,14 +10,16 @@ html {
     width:3em;
     height: auto;
     pointer-events: none;
+    align-self: center;
 }
 
 .Title {
     background: #e10600;
     color: white;
     font-size: calc(20px + 2vmin);
+    display: flex;
+    justify-content: space-evenly;
 }
-
 .App-header {
     background-color: #282c34;
     min-height: 100vh;
