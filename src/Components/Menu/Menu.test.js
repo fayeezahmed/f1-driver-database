@@ -14,6 +14,10 @@ test('renders Menu component', () => {
 })
 
 test('renders Menu list component if Burger Menu is clicked', () => {
-    const menuElement = renderComponent("MENU")
+   const { getByTestId } = render(<Menu />);
+   const menuElement = getByTestId("MENU")
     // click on the burger menu
+    fireEvent.click(menuElement);
+    const menuListElement = getByTestId("MENU_LIST") 
+    expect(menuListElement).toBeInTheDocument();
 })
