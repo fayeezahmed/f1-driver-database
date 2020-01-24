@@ -1,7 +1,23 @@
 .MenuList {
+    margin: 0 auto;
+    padding: 0rem;
     width: 200px;
-    height: 200px;
-    background: yellow;
+    background: #e10600;
     position: absolute;
-    transform: translateX(-300px)
+    transition: transform 0.7s;
+    -webkit-transition: transform 0.7s;
+    transform: translateX(-1000%);
+    border-top: solid 1pt white ;
 }
+
+.MenuList-active {
+    transform: translateX(0);
+}
+
+.MenuList > li {
+    list-style: none;
+    text-align: left;
+    font: italic 12pt 'Helvetica Neue';
+    padding: 0.5rem;
+}
+

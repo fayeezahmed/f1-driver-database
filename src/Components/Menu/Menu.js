@@ -18,7 +18,7 @@ function Menu(){
             >
                 <BurgerMenu className="Menu" /> 
             </button>
-            {showMenuList ? <MenuList /> : null}
+            <MenuList activateMenu={showMenuList} /> 
         </div>
     )
 }
