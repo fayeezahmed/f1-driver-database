@@ -11,7 +11,6 @@ function App() {
         <Menu />
         <span><Logo className="App-logo" /> Driver's Database </span>
       </div>
-      <Search />
     </div>
   );
 }
