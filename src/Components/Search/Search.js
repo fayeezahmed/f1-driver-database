@@ -62,6 +62,7 @@ function Search(){
             className="Search"
             data-testid="SEARCH"    
         >
+            <h3> Driver's Statistics </h3>
             <form onSubmit={handleSubmit}>
                 <input 
                     placeholder="Search driver.."
