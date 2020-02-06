@@ -15,7 +15,14 @@ function App() {
           </div>
             <Switch>
                 <Route path="/driver_comparison">
-                    <div data-testid="DriverComp"></div>
+                        <h1> Compare Drivers </h1> 
+                    <div
+                        className="DriverComparison"
+                        data-testid="DriverComp"
+                    >
+                        <Search />
+                        <Search />
+                    </div>
                 </Route>
                 <Route path="/driver_stats">
                     <Search />

@@ -16,17 +16,12 @@ function MenuList(props) {
                             <Link to={`/${item.toLowerCase()}`}>{MenuItems[item]}</Link>
                          </li>)
     return (
-        <>
-            <nav>
-                <ul 
-                    className={"MenuList " + active}
-                    data-testid="MENU_LIST"
-                >
-                    {menuListItems}
-                </ul>        
-            </nav>
-            
-       </> 
+        <ul 
+            className={"MenuList " + active}
+            data-testid="MENU_LIST"
+        >
+            {menuListItems}
+        </ul>        
     )
 }
 

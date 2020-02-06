@@ -38,6 +38,16 @@ html {
     color: #61dafb;
 }
 
+.DriverComparison {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -moz-flex;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
 @keyframes App-logo-spin {
     from {
         transform: rotate(0deg);
